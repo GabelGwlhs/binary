@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList <Integer>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
         list.add(5);
         list.add(4);
         list.add(25);
@@ -14,20 +14,29 @@ public class Main {
         Collections.sort(list);
         System.out.println(list);
         int target = 25;
-        int ind = binary(list,target);
-        System.out.println(ind);}
-        public static Integer binary(ArrayList<Integer> list, int tar) {
+        int ind = binary(list, target);
+        System.out.println(ind);
+    }
 
+    public static Integer binary(ArrayList<Integer> list, int tar) {
 
-            if (list.size() % 2 == 1) {
-                return list.get(list.size() / 2);
-            } else {
-                return list.get(list.size() / 2 - 1) + list.get(list.size() / 2);
+        int high = list.size() - 1;
+        int low = 0;
 
+        while (low<=high) {
+           int mid=(low+high)/2;
+            if(list.get(mid)==tar){
+                return mid;
             }
-
-
+            else if (list.get(mid) < tar) {
+                low = mid+1;
+            }
+            else {
+                high = mid-1;
+            }
         }
-        }
+        return -1;
+    }
+}
 
 
